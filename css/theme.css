@@ -1,0 +1,12 @@
+body.dark {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark .card {
+  background-color: #1e293b;
+}
+
+body.dark .app-header {
+  background-color: #020617;
+}
