@@ -24,3 +24,23 @@ function populateAxisDropdowns(headers, columnTypes) {
   });
 }
 
+const chartTypeSelect = document.getElementById("chartType");
+
+function updateChart() {
+  const xKey = xAxisSelect.value;
+  const yKey = yAxisSelect.value;
+  const chartType = chartTypeSelect.value;
+
+  if (!xKey || !yKey) return;
+
+  const aggregated = aggregateData(dataset.rows, xKey, yKey);
+  const chartData = prepareChartData(aggregated);
+
+  renderChart(chartData.labels, chartData.values, chartType);
+}
+
+xAxisSelect.addEventListener("change", updateChart);
+yAxisSelect.addEventListener("change", updateChart);
+chartTypeSelect.addEventListener("change", updateChart);
+
+
