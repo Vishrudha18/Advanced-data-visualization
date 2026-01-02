@@ -30,9 +30,11 @@ function parseCSV(text) {
   dataset.headers = headers;
   dataset.rows = rows;
 
+  dataset.columnTypes = detectColumnTypes(headers, rows);
+
   console.log("Dataset Loaded:", dataset);
+  console.log("Column Types:", dataset.columnTypes);
+
+  // ✅ FIXED LINE
+  populateAxisDropdowns(dataset.headers, dataset.columnTypes);
 }
-
-dataset.columnTypes = detectColumnTypes(headers, rows);
-console.log("Column Types:", dataset.columnTypes);
-
