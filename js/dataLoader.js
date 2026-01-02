@@ -32,3 +32,7 @@ function parseCSV(text) {
 
   console.log("Dataset Loaded:", dataset);
 }
+
+dataset.columnTypes = detectColumnTypes(headers, rows);
+console.log("Column Types:", dataset.columnTypes);
+

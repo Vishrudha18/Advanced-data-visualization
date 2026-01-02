@@ -1,4 +1,5 @@
 let dataset = {
   headers: [],
-  rows: []
+  rows: [],
+  columnTypes: {}
 };
