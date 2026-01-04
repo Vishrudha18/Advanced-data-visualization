@@ -1,62 +1,86 @@
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
 body {
-  background-color: #f4f6f8;
-  color: #222;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #e5e7eb;
   min-height: 100vh;
 }
 
+/* =========================
+   HEADER
+========================= */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px;
-  background-color: #1e293b;
-  color: #fff;
+  padding: 18px 28px;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .app-header h1 {
   font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
 }
 
 #themeToggle {
-  background: none;
+  background: rgba(255,255,255,0.08);
   border: none;
-  font-size: 20px;
+  color: #f8fafc;
+  padding: 8px 10px;
+  border-radius: 10px;
   cursor: pointer;
-  color: #fff;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 24px auto;
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.card h2 {
-  margin-bottom: 12px;
   font-size: 18px;
 }
 
+/* =========================
+   LAYOUT
+========================= */
+.container {
+  max-width: 1280px;
+  margin: 32px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+/* =========================
+   CARD (GLASS STYLE)
+========================= */
+.card {
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 22px 26px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #f8fafc;
+}
+
+/* =========================
+   CONTROLS GRID
+========================= */
 .controls {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 .control-group {
@@ -65,23 +89,70 @@ body {
 }
 
 .control-group label {
+  font-size: 13px;
   margin-bottom: 6px;
-  font-size: 14px;
+  color: #cbd5f5;
 }
 
-.control-group select,
+/* =========================
+   INPUTS
+========================= */
+select,
 input[type="file"] {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  background: rgba(2, 6, 23, 0.9);
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: all 0.25s ease;
 }
 
+select:hover,
+input[type="file"]:hover {
+  border-color: #38bdf8;
+}
+
+select:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.25);
+}
+
+/* =========================
+   VISUALIZATION
+========================= */
+.viz-card {
+  padding-bottom: 28px;
+}
+
+#emptyMessage {
+  text-align: center;
+  color: #94a3b8;
+  margin-top: 20px;
+}
+
+/* Chart sizing control */
+.chart-wrapper {
+  height: 380px;
+  position: relative;
+}
+
+/* Canvas fix */
 canvas {
   width: 100% !important;
-  height: 400px !important;
+  height: 100% !important;
 }
 
-@media (max-width: 600px) {
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
   .app-header h1 {
     font-size: 18px;
   }

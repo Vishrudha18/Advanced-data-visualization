@@ -4,6 +4,9 @@ const chartTypeSelect = document.getElementById("chartType");
 
 console.log("uiController loaded");
 
+/* =========================
+   Populate Axis Dropdowns
+========================= */
 function populateAxisDropdowns(headers, columnTypes) {
   console.log("Populating dropdowns", headers, columnTypes);
 
@@ -11,11 +14,13 @@ function populateAxisDropdowns(headers, columnTypes) {
   yAxisSelect.innerHTML = "";
 
   headers.forEach(header => {
+    // X-axis (all columns)
     const xOption = document.createElement("option");
     xOption.value = header;
     xOption.textContent = header;
     xAxisSelect.appendChild(xOption);
 
+    // Y-axis (only numeric)
     if (columnTypes[header] === "numeric") {
       const yOption = document.createElement("option");
       yOption.value = header;
@@ -24,24 +29,27 @@ function populateAxisDropdowns(headers, columnTypes) {
     }
   });
 
-  if (xAxisSelect.options.length > 0) xAxisSelect.selectedIndex = 0;
-  if (yAxisSelect.options.length > 0) yAxisSelect.selectedIndex = 0;
+  if (xAxisSelect.options.length > 0) {
+    xAxisSelect.selectedIndex = 0;
+  }
 
-  // Auto-render first chart
+  if (yAxisSelect.options.length > 0) {
+    yAxisSelect.selectedIndex = 0;
+  }
+
+  // Auto render first chart
   updateChart();
 }
 
+/* =========================
+   Update Chart
+========================= */
 function updateChart() {
-  if (!dataset || !dataset.rows || dataset.rows.length === 0) return;
-
   const xKey = xAxisSelect.value;
   const yKey = yAxisSelect.value;
   const chartType = chartTypeSelect.value;
 
-  if (!xKey || !yKey || xKey === yKey) return;
-
-  const emptyMessage = document.getElementById("emptyMessage");
-  if (emptyMessage) emptyMessage.style.display = "none";
+  if (!xKey || !yKey || !dataset?.rows) return;
 
   const aggregated = aggregateData(dataset.rows, xKey, yKey);
   const chartData = prepareChartData(aggregated);
@@ -54,6 +62,9 @@ function updateChart() {
   );
 }
 
+/* =========================
+   Event Listeners
+========================= */
 xAxisSelect.addEventListener("change", updateChart);
 yAxisSelect.addEventListener("change", updateChart);
 chartTypeSelect.addEventListener("change", updateChart);

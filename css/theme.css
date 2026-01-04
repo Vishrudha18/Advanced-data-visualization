@@ -1,12 +1,137 @@
+/* ======================================================
+   THEME VARIABLES
+====================================================== */
+
+/* ---------- LIGHT THEME (default) ---------- */
+:root {
+  --bg-main: #f1f5f9;
+  --bg-header: #ffffff;
+  --bg-card: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+
+  --border-color: rgba(0, 0, 0, 0.08);
+
+  --input-bg: #ffffff;
+  --input-border: #cbd5f5;
+
+  --accent: #3b82f6;
+}
+
+/* ---------- DARK THEME ---------- */
 body.dark {
-  background-color: #0f172a;
-  color: #e5e7eb;
+  --bg-main: linear-gradient(135deg, #0f172a, #020617);
+  --bg-header: rgba(15, 23, 42, 0.9);
+  --bg-card: rgba(30, 41, 59, 0.65);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5f5;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  --input-bg: rgba(2, 6, 23, 0.9);
+  --input-border: rgba(255, 255, 255, 0.15);
+
+  --accent: #38bdf8;
 }
 
-body.dark .card {
-  background-color: #1e293b;
+/* ======================================================
+   APPLY VARIABLES
+====================================================== */
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
 }
 
-body.dark .app-header {
-  background-color: #020617;
+/* HEADER */
+.app-header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* CARDS */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+/* TEXT */
+.card h2,
+.app-header h1 {
+  color: var(--text-primary);
+}
+
+label {
+  color: var(--text-secondary);
+}
+
+#emptyMessage {
+  color: var(--text-secondary);
+}
+
+/* INPUTS */
+select,
+input[type="file"] {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+}
+
+select:focus,
+input[type="file"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+/* THEME TOGGLE BUTTON */
+#themeToggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+/* ======================================================
+   CHART (Chart.js text color hint)
+====================================================== */
+canvas {
+  color: var(--text-primary);
+}
+
+/* ======================================================
+   THEME TRANSITION ENGINE (FINAL)
+====================================================== */
+
+body,
+.app-header,
+.card,
+select,
+input[type="file"],
+#themeToggle {
+  transition:
+    background-color 0.45s ease,
+    background 0.45s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease;
+}
+
+/* Disable animation on first load */
+.no-transition * {
+  transition: none !important;
+}
+
+/* Toggle interaction */
+#themeToggle:active {
+  transform: scale(0.9);
+}
+
+/* Glow feedback */
+body.dark #themeToggle {
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+body:not(.dark) #themeToggle {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
 }

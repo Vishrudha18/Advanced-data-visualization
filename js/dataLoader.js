@@ -37,4 +37,15 @@ function parseCSV(text) {
 
   // ✅ FIXED LINE
   populateAxisDropdowns(dataset.headers, dataset.columnTypes);
+
+  if (openedDashboard) {
+  const xAxis = document.getElementById("xAxis");
+  const yAxis = document.getElementById("yAxis");
+
+  if (openedDashboard.xAxis && openedDashboard.yAxis) {
+    xAxis.value = openedDashboard.xAxis;
+    yAxis.value = openedDashboard.yAxis;
+  }
+}
+
 }
