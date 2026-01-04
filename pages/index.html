@@ -19,12 +19,16 @@
     <li><a href="home.html">Home</a></li>
     <li><a href="features.html">Features</a></li>
     <li><a href="dashboards.html">Dashboards</a></li>
-    <li><a href="upload.html">Upload Data</a></li>
+    <li><a href="upload.html" class="active">Upload Data</a></li>
+    <li><a href="about.html" class="active">About</a></li>
     <li><a href="index.html" class="btn-primary active">Visualize</a></li>
   </ul>
 
   <!-- Theme Toggle -->
-  <button id="themeToggle" class="theme-toggle">🌙</button>
+  <div class="nav-actions">
+    <button id="logoutBtn" class="btn-outline hidden">Logout</button>
+    <button id="themeToggle" class="theme-toggle">🌙</button>
+  </div>
 </nav>
 
 <main class="container">
@@ -91,6 +95,8 @@
 <script src="../js/dataLoader.js"></script>
 <script src="../js/aggregator.js"></script>
 <script src="../js/chartManager.js"></script>
+<script src="../js/auth.js"></script>
+
 
 </body>
 </html>

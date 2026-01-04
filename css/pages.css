@@ -123,6 +123,11 @@
   transform: scale(1.05);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 /* Buttons */
 .btn-primary {
@@ -334,4 +339,203 @@
   color: #fff;
 }
 
+/* =========================
+   UPLOAD PAGE (IMPROVED)
+========================= */
+
+.upload-container {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 80px;
+}
+
+.upload-card {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  border-radius: 22px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+  text-align: center;
+}
+
+/* DARK MODE CARD */
+body.dark .upload-card {
+  background: rgba(30, 41, 59, 0.85);
+  color: #f8fafc;
+}
+
+/* Title */
+.upload-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* File input wrapper */
+.upload-card input[type="file"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(100, 116, 139, 0.5);
+  background: rgba(248, 250, 252, 0.7);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+body.dark .upload-card input[type="file"] {
+  background: rgba(2, 6, 23, 0.8);
+  border-color: rgba(255,255,255,0.2);
+  color: #f8fafc;
+}
+
+/* Hint text */
+.upload-card .hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+body.dark .upload-card .hint {
+  color: #cbd5f5;
+}
+
+/* File info */
+.file-info {
+  margin-top: 18px;
+  text-align: left;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.04);
+}
+
+body.dark .file-info {
+  background: rgba(255,255,255,0.06);
+}
+
+/* Continue button */
+.upload-card .btn-primary {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 12px 26px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+/* Disabled state */
+.disabled {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* =========================
+   AUTH (LOGIN / REGISTER)
+========================= */
+
+.auth-container {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 34px 36px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+  text-align: center;
+}
+
+body.dark .auth-card {
+  background: rgba(30,41,59,0.85);
+  color: #f8fafc;
+}
+
+.auth-card h2 {
+  font-size: 22px;
+  color: #877a7a;
+  margin-bottom: 6px;
+}
+
+.auth-sub {
+  font-size: 14px;
+  margin-bottom: 22px;
+  color: #678cc1;
+}
+
+body.dark .auth-sub {
+  color: #cbd5f5;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(100,116,139,0.35);
+  font-size: 14px;
+}
+
+body.dark .auth-card input {
+  background: rgba(2,6,23,0.85);
+  color: #f8fafc;
+}
+
+.full {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.auth-footer {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #877a7a;
+}
+
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.about-container {
+  max-width: 1100px;
+  margin: 40px auto 100px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+.about-card h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.about-card p,
+.about-card li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.about-card ul {
+  padding-left: 18px;
+}
 
