@@ -8,30 +8,6 @@ https://vishrudha18.github.io/Advanced-data-visualization/
 
 ---
 
-## 🚀 Features
-
-- 🔐 **Login & Register System** (Frontend-only using LocalStorage)
-- 📁 **Upload Data** (CSV / structured data support)
-- 📊 **Multiple Chart Types**
-  - Bar Chart
-  - Line Chart
-  - Pie / Doughnut Chart
-- 🌗 **Light & Dark Theme Toggle**
-- 📈 **Interactive Dashboards**
-- 🧭 **Smooth Navigation Between Pages**
-- 💻 **Fully Responsive UI**
-
----
-
-## 🧩 Project Structure
-
-# 📊 Advanced Data Visualization Tool
-
-A modern, web-based **Advanced Data Visualization Tool** inspired by **Tableau** and **Power BI**.  
-This project enables users to upload datasets, create interactive charts, manage dashboards, and export visualizations — built entirely with **HTML, CSS, and JavaScript**.
-
----
-
 ## 🚀 Project Overview
 
 The **Advanced Data Visualization Tool** is a frontend-only analytics application designed to demonstrate how powerful data visualization workflows can be implemented **without any backend**.
@@ -96,7 +72,6 @@ It focuses on:
 
 ## 🗂️ Project Structure
 
-```text
 Advanced-Data-Visualization/
 │
 ├── index.html
