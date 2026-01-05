@@ -22,7 +22,7 @@ if (loginBtn) {
     }
 
     localStorage.setItem("currentUser", JSON.stringify(user));
-    window.location.href = "index.html";
+    window.location.href = "pages/home.html";
   });
 }
 
@@ -50,7 +50,7 @@ if (registerBtn) {
     localStorage.setItem("users", JSON.stringify(users));
 
     alert("Registration successful! Please login.");
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
   });
 }
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("currentUser");
-      window.location.href = "login.html";
+      window.location.href = "../index.html";
     });
   }
 });

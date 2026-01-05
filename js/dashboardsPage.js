@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="dashboard-card empty">
         <span>📊</span>
         <p>No dashboards saved yet</p>
-        <a href="index.html" class="dashboard-btn">Create Dashboard</a>
+        <a href="visualize.html" class="dashboard-btn">Create Dashboard</a>
       </div>
     `;
   } else {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>${db.chartType.toUpperCase()} • ${db.datasetName}</p>
 
         <div class="dashboard-actions">
-          <a href="index.html?id=${db.id}" class="dashboard-btn">Open</a>
+          <a href="visualize.html?id=${db.id}" class="dashboard-btn">Open</a>
           <button class="rename-btn" data-id="${db.id}">Rename</button>
           <button class="delete-btn" data-id="${db.id}">Delete</button>
         </div>
