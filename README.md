@@ -7,7 +7,7 @@ A **full-stack web application** that enables users to upload datasets, generate
 This project allows users to **log in, upload data, visualize datasets, and explore interactive dashboards** with a clean and professional UI.
 
 🔗 **Live Demo:**  
-https://vishrudha18.github.io/Advanced-data-visualization/
+ https://vishrudha18.github.io/Advanced-data-visualization/
 
 ---
 
