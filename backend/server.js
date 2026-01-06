@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/protected", require("./routes/protected"));
+app.use("/api/dashboard", require("./routes/dashboard"));
 
 
 app.listen(5003, () => {

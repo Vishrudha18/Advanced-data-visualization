@@ -10,7 +10,28 @@ function saveDashboard(config) {
   if (exists) return;
 
   dashboards.push(config);
-  localStorage.setItem("dashboards", JSON.stringify(dashboards));
+  async function saveDashboard(name, config) {
+  const token = localStorage.getItem("token");
+
+  const res = await fetch("http://localhost:5003/api/dashboard/save", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({ name, config })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    alert(data.message || "Save failed");
+    return;
+  }
+
+  alert("Dashboard saved successfully");
+}
+
 }
 
 function deleteDashboard(id) {
