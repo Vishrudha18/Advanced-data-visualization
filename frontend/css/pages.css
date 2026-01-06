@@ -189,6 +189,7 @@
 
 .feature-box h3 {
   margin-bottom: 10px;
+  color:#747883
 }
 
 .feature-box p {
@@ -524,6 +525,7 @@ body.dark .auth-card input {
 }
 
 .about-card h2 {
+  color:#5d616c;
   margin-bottom: 12px;
   font-size: 18px;
 }
@@ -539,3 +541,95 @@ body.dark .auth-card input {
   padding-left: 18px;
 }
 
+/* =========================
+   DASHBOARD ACTION BUTTONS
+========================= */
+
+#saveDashboardBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 100px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#exportChartBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 100px;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* SAVE DASHBOARD – PRIMARY */
+#saveDashboardBtn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  border: none;
+  box-shadow:
+    0 10px 30px rgba(59, 130, 246, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+#saveDashboardBtn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 40px rgba(59, 130, 246, 0.45);
+}
+
+#saveDashboardBtn:active {
+  transform: translateY(-1px);
+}
+
+/* EXPORT CHART – SECONDARY */
+#exportChartBtn {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2563eb;
+  border: 1.5px solid rgba(37, 99, 235, 0.4);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+#exportChartBtn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 32px rgba(37, 99, 235, 0.35);
+}
+
+#exportChartBtn:active {
+  transform: translateY(-1px);
+}
+
+/* DARK MODE SUPPORT */
+body.dark #exportChartBtn {
+  background: rgba(30, 41, 59, 0.85);
+  color: #93c5fd;
+  border-color: rgba(147, 197, 253, 0.4);
+}
+
+body.dark #exportChartBtn:hover {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+#saveDashboardBtn:hover span,
+#exportChartBtn:hover span {
+  transform: translateX(2px);
+}
