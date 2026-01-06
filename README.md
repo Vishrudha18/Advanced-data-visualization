@@ -1,6 +1,9 @@
 # 📊 Advanced Data Visualization Tool
 
-A modern, frontend-only **Advanced Data Visualization Tool** built using **HTML, CSS, and JavaScript**.  
+A modern,**Advanced Data Visualization Tool** built using **HTML, CSS, and JavaScript**.  
+
+A **full-stack web application** that enables users to upload datasets, generate interactive visualizations, and securely save dashboards using authentication and MongoDB
+
 This project allows users to **log in, upload data, visualize datasets, and explore interactive dashboards** with a clean and professional UI.
 
 🔗 **Live Demo:**  
@@ -21,6 +24,12 @@ It focuses on:
 ---
 
 ## ✨ Features
+
+### 🔐 Authentication
+- User Registration & Login
+- Password hashing with **bcrypt**
+- Secure authentication using **JWT**
+- Protected routes for dashboards
 
 ### 📁 Data Upload
 - Upload **CSV** and **JSON** files
@@ -52,68 +61,66 @@ It focuses on:
 - Delete dashboards
 - Export charts as **PNG images**
 
-### 🔐 Authentication (Client-side)
-- Register & Login functionality
-- Session handling using `localStorage`
-- Logout available across all pages
-- Backend-ready authentication structure
-
 ---
 
 ## 🛠️ Tech Stack
 
-- **HTML5** – Structure
-- **CSS3** – Styling, glassmorphism, responsive design
-- **JavaScript (Vanilla)** – Application logic
-- **Chart.js** – Data visualization
-- **Browser localStorage** – Persistence (dashboards & authentication)
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- Chart.js
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Token (JWT)
+- bcrypt
 
 ---
 
 ## 🗂️ Project Structure
 
-Advanced-Data-Visualization/
+Advanced-data-visualization/
 │
-├── index.html
+├── frontend/
+│ ├── css/
+│ ├── js/
+│ └── pages/
 │
-├── pages/
-│   ├── home.html
-│   ├── features.html
-│   ├── dashboards.html
-│   ├── upload.html
-│   ├── visualize.html
-│   ├── register.html
-│   └── about.html
-│
-├── css/
-│   ├── main.css
-│   ├── theme.css
-│   └── pages.css
-│
-├── js/
-│   ├── app.js
-│   ├── auth.js
-│   ├── upload.js
-│   ├── dataLoader.js
-│   ├── chartManager.js
-│   ├── aggregator.js
-│   ├── metadata.js
-│   ├── dashboardStorage.js
-│   └── dashboardsPage.js
-│
-├── data/
-│   └── sample.csv
+├── backend/
+│ ├── models/
+│ ├── routes/
+│ ├── middleware/
+│ ├── server.js
+│ └── .env
 │
 ├── .gitignore
 └── README.md
 
-## 🔐 How Authentication Works (No Backend)
+---
 
-- User data is stored in browser localStorage
-- Registration stores { email, password }
-- Login validates credentials from stored users
-- Session is maintained using currentUser
-- Logout clears session data
+## ▶️ How to Run the Project
+
+### 1️⃣ Backend Setup
+cd backend
+npm install
+node server.js
+
+#### Expected output:
+MongoDB connected
+Server running on port 5003
+
+### 2️⃣ Frontend Setup
+
+Open frontend/index.html using Live Server in VS Code
+OR
+
+Open index.html directly in the browser
+
+---
 
 ## 📌 How Dashboards Work
 
@@ -126,16 +133,21 @@ Advanced-Data-Visualization/
 
 - Raw datasets are not stored
 
-**Dashboard Restore Flow:**
+---
 
-- Open a saved dashboard
-- Re-upload the dataset
-- Chart configuration is automatically restored
+## 🧪 How to Verify Backend Connection
+
+- Login successfully
+- Save a dashboard
+- Check MongoDB for saved dashboard records
+- Network tab shows API calls to localhost:5003
+
+---
 
 ## 🔮 Future Enhancements
 
-- Backend integration (Node.js + Database)
-- Secure authentication with hashed passwords
-- Persistent dataset storage
 - Dashboard sharing
-- Advanced analytics & filters
+- Advanced chart customization
+- Cloud deployment
+- Role-based access control
+- Dataset analytics & insights

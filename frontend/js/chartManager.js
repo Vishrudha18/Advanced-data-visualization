@@ -1,6 +1,58 @@
 let currentChart = null;
 
 /* =========================
+   Smooth Animation (Tableau-like)
+========================= */
+const smoothAnimation = {
+  animation: {
+    duration: 1200,
+    easing: "easeOutQuart"
+  },
+  animations: {
+    x: {
+      duration: 1200,
+      easing: "easeOutQuart"
+    },
+    y: {
+      duration: 1200,
+      easing: "easeOutQuart",
+      from: 0
+    }
+  },
+  transitions: {
+    active: {
+      animation: {
+        duration: 400,
+        easing: "easeOutCubic"
+      }
+    },
+    resize: {
+      animation: {
+        duration: 600,
+        easing: "easeOutQuart"
+      }
+    }
+  }
+};
+
+/* =========================
+   Export Background Plugin
+========================= */
+const backgroundPlugin = {
+  id: "customCanvasBackgroundColor",
+  beforeDraw: (chart) => {
+    const ctx = chart.canvas.getContext("2d");
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.fillStyle = document.body.classList.contains("dark")
+      ? "#020617"
+      : "#ffffff";
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+/* =========================
    Helper: Check categorical X-axis
 ========================= */
 function isCategorical(labels) {
@@ -11,6 +63,9 @@ function isCategorical(labels) {
    Render Chart
 ========================= */
 function renderChart(labels, values, chartType, yLabel) {
+  const emptyMsg = document.getElementById("emptyMessage");
+  if (emptyMsg) emptyMsg.style.display = "none";
+
   const canvas = document.getElementById("chartCanvas");
   const ctx = canvas.getContext("2d");
 
@@ -22,20 +77,27 @@ function renderChart(labels, values, chartType, yLabel) {
     currentChart.destroy();
   }
 
-  /* =========================
-     Prevent wrong chart usage
-  ========================= */
   if (chartType === "bubble" && isCategorical(labels)) {
     alert("Bubble chart works best with numeric X-axis");
     return;
   }
 
   /* =========================
-     COMMON OPTIONS
+     Common Options
   ========================= */
   const commonOptions = {
     responsive: true,
     maintainAspectRatio: false,
+
+    ...smoothAnimation,
+
+    interaction: {
+      mode: "nearest",
+      intersect: false
+    },
+    hover: {
+      animationDuration: 300
+    },
     plugins: {
       legend: {
         position: "top",
@@ -58,7 +120,7 @@ function renderChart(labels, values, chartType, yLabel) {
   };
 
   /* =========================
-     SCATTER CHART
+     Scatter Chart
   ========================= */
   if (chartType === "scatter") {
     currentChart = new Chart(ctx, {
@@ -70,13 +132,14 @@ function renderChart(labels, values, chartType, yLabel) {
           backgroundColor: "rgba(54,162,235,0.7)"
         }]
       },
-      options: commonOptions
+      options: commonOptions,
+      plugins: [backgroundPlugin]
     });
     return;
   }
 
   /* =========================
-     BUBBLE CHART
+     Bubble Chart
   ========================= */
   if (chartType === "bubble") {
     const bubbleData = values.map((v, i) => ({
@@ -95,13 +158,14 @@ function renderChart(labels, values, chartType, yLabel) {
           borderColor: "rgba(255,99,132,1)"
         }]
       },
-      options: commonOptions
+      options: commonOptions,
+      plugins: [backgroundPlugin]
     });
     return;
   }
 
   /* =========================
-     STACKED BAR
+     Stacked Bar Chart
   ========================= */
   if (chartType === "stackedBar") {
     currentChart = new Chart(ctx, {
@@ -111,7 +175,8 @@ function renderChart(labels, values, chartType, yLabel) {
         datasets: [{
           label: yLabel || "Values",
           data: values,
-          backgroundColor: "rgba(75,192,192,0.7)"
+          backgroundColor: "rgba(75,192,192,0.7)",
+          borderRadius: 6
         }]
       },
       options: {
@@ -120,15 +185,14 @@ function renderChart(labels, values, chartType, yLabel) {
           x: { stacked: true },
           y: { stacked: true }
         }
-      }
+      },
+      plugins: [backgroundPlugin]
     });
     return;
   }
 
   /* =========================
-     DEFAULT CHARTS
-     bar, line, pie, doughnut,
-     radar, polarArea
+     Default Charts
   ========================= */
   currentChart = new Chart(ctx, {
     type: chartType,
@@ -152,7 +216,9 @@ function renderChart(labels, values, chartType, yLabel) {
         fill: chartType === "line",
         tension: chartType === "line" ? 0.4 : 0,
         borderWidth: 2,
-        pointRadius: chartType === "line" ? 5 : 0
+        pointRadius: chartType === "line" ? 5 : 0,
+        pointHoverRadius: chartType === "line" ? 8 : 0,
+        hoverBackgroundColor: "rgba(59,130,246,0.85)"
       }]
     },
     options:
@@ -162,12 +228,18 @@ function renderChart(labels, values, chartType, yLabel) {
         ? {
             responsive: true,
             maintainAspectRatio: false,
+            animation: {
+              animateRotate: true,
+              duration: 1200,
+              easing: "easeOutQuart"
+            },
             plugins: {
               legend: {
                 position: "top"
               }
             }
           }
-        : commonOptions
+        : commonOptions,
+    plugins: [backgroundPlugin]
   });
 }

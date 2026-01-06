@@ -44,7 +44,7 @@ function populateAxisDropdowns(headers, columnTypes) {
 /* =========================
    Update Chart
 ========================= */
-function updateChart() {
+window.updateChart = function () {
   const xKey = xAxisSelect.value;
   const yKey = yAxisSelect.value;
   const chartType = chartTypeSelect.value;
@@ -60,7 +60,8 @@ function updateChart() {
     chartType,
     `${yKey} by ${xKey}`
   );
-}
+};
+
 
 /* =========================
    Event Listeners

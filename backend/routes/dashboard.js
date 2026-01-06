@@ -39,6 +39,28 @@ router.get("/my", authMiddleware, async (req, res) => {
   }
 });
 
+/* ================= GET DASHBOARD BY ID ================= */
+router.get("/:id", authMiddleware, async (req, res) => {
+  console.log("Dashboard ID:", req.params.id);
+  console.log("User ID from token:", req.userId);
+
+  try {
+    const dashboard = await Dashboard.findOne({
+      _id: req.params.id,
+      userId: req.userId
+    });
+
+    if (!dashboard) {
+      return res.status(404).json({ message: "Dashboard not found" });
+    }
+
+    res.json(dashboard);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 /* ================= UPDATE DASHBOARD NAME ================= */
 router.put("/update/:id", authMiddleware, async (req, res) => {
   try {
@@ -83,6 +105,8 @@ router.delete("/delete/:id", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+
 
 
 module.exports = router;
