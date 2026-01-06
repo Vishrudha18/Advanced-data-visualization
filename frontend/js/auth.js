@@ -1,7 +1,8 @@
+// ================= LOGIN =================
 const loginBtn = document.getElementById("loginBtn");
 
 if (loginBtn) {
-  loginBtn.addEventListener("click", () => {
+  loginBtn.addEventListener("click", async () => {
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value.trim();
 
@@ -10,60 +11,91 @@ if (loginBtn) {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    try {
+      const res = await fetch("http://localhost:5003/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-    const user = users.find(
-      u => u.email === email && u.password === password
-    );
+      const data = await res.json();
 
-    if (!user) {
-      alert("Invalid credentials");
-      return;
+      if (!res.ok) {
+        alert(data.message || "Login failed");
+        return;
+      }
+
+      // ✅ Store ONLY token
+      localStorage.setItem("token", data.token);
+
+      window.location.href = "pages/home.html";
+
+    } catch (err) {
+      alert("Server error");
     }
-
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    window.location.href = "pages/home.html";
   });
 }
 
+// ================= REGISTER =================
 const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
-  registerBtn.addEventListener("click", () => {
+  registerBtn.addEventListener("click", async () => {
+    const name = document.getElementById("regName")?.value.trim();
     const email = document.getElementById("regEmail").value.trim();
     const password = document.getElementById("regPassword").value.trim();
 
-    if (!email || !password) {
+    if (!name || !email || !password) {
       alert("Please fill all fields");
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    try {
+      const res = await fetch("http://localhost:5003/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+      });
 
-    const exists = users.some(u => u.email === email);
-    if (exists) {
-      alert("User already exists");
-      return;
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Registration failed");
+        return;
+      }
+
+      alert("Registration successful! Please login.");
+      window.location.href = "../index.html";
+
+    } catch (err) {
+      alert("Server error");
     }
-
-    users.push({ email, password });
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Registration successful! Please login.");
-    window.location.href = "../index.html";
   });
 }
 
+// ================= LOGOUT =================
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  if (logoutBtn && currentUser) {
-    logoutBtn.classList.remove("hidden");
+  if (logoutBtn) {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      logoutBtn.classList.remove("hidden");
+    }
 
     logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("token");
       window.location.href = "../index.html";
     });
   }
 });
+
+// Redirect if already logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+  if (token && window.location.pathname.endsWith("index.html")) {
+    window.location.href = "pages/home.html";
+  }
+});
+
